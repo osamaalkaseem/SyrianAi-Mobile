@@ -1,0 +1,3 @@
+# Flet app configuration
+main_script_path: main.py
+platfrom: android
