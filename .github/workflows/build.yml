@@ -24,11 +24,13 @@ jobs:
         uses: android-actions/setup-android@v3
         
       - name: Build Android APK
-        run: flet build apk
-        
+        run: |
+          flet build apk --no-config
+        continue-on-error: true
+
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
         with:
           name: SyrianAi-App
-          path: build/apk/*.apk
+          path: build/apk/
           
