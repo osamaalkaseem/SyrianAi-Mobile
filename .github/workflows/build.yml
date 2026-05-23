@@ -23,18 +23,22 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Install Flet and Dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flet google-genai
 
-      - name: Build APK
+      - name: Create Flet Build
         run: |
-          flet build apk --verbose
+          flet pack main.py
+
+      - name: Build Android APK via Flutter
+        run: |
+          flutter build apk --release --no-pub
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SyrianAi-Release-APK
-          path: build/apk/*.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
           
